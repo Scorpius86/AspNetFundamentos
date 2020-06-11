@@ -1,0 +1,65 @@
+﻿@model PersonViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    var valor = 10;
+    var erick = new PersonViewModel("Erick", 38);
+    var people = new List<PersonViewModel>();
+    people.Add(new PersonViewModel("Erick", 38));
+    people.Add(new PersonViewModel("Oscar", 15));
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<h1>Expresiones Implicitas</h1>
+<p>@DateTime.Now</p>
+<p>@DateTime.IsLeapYear(2016)</p>
+
+<h1>Expresiones Explicitas</h1>
+<p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
+<p>Erick Age's :@(erick.Age)</p>
+
+<h1>Bloques de codigo</h1>
+@{
+    void RenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+
+    RenderName("Mahatma Gandhi");
+    RenderName("Martin Luther King, Jr.");
+}
+
+<h1>Estructuras de control</h1>
+@if (valor % 2 == 0)
+{
+    <p>@valor Es un numero par</p>
+}
+
+@{
+    if (valor % 2 == 0)
+    {
+        <p>@valor Es un numero par</p>
+    }
+}
+
+@for (var i = 0; i < people.Count(); i++)
+{
+    var person = people[i];
+    <p>Name : @person.FirstName</p>
+    <p>Age : @person.Age</p>
+}
+
+<h1>Directiva @@model</h1>
+<p>Name : @Model.FirstName</p>
+<p>Age : @Model.Age</p>
+@foreach (var address in @Model.Addresses)
+{
+    <p>AddressId : @address.AddressId</p>
+    <p>District : @address.District</p>
+}

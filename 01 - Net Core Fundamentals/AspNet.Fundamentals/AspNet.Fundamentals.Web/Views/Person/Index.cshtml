@@ -1,0 +1,15 @@
+﻿@model PersonViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Person Index</h1>
+
+<p>Name : @Model.FirstName</p>
+<p>Age : @Model.Age</p>
+@foreach (var address in @Model.Addresses)
+{
+    <p>AddressId : @address.AddressId</p>
+    <p>District : @address.District</p>
+}
+
