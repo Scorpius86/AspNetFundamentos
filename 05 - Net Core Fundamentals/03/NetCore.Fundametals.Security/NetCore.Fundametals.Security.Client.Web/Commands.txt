@@ -1,40 +1,71 @@
-﻿Add Scafoldin, de Identity
-seleccionar crear un nuevo db context
-confgirar segun txt
-cambiar el nombre de la bd a generar
+﻿Tomar como referencia el proyecto inicial sin cambios
 
+Agregar la clase ApplicationUser y agregar el campo full
+En el proyecto , Add Scafoldin, de Identity
+Seleccionar UI de Login y Register
+Seleccionar crear un nuevo db context
+Seleccionar ApplicationUser en User Class
+Confgirar segun txt:
+	- StartUp Agregar Servcies.AddRazorPages
+	- Agregar enpoints.MapRazorPages
+Mover el ApplicationUser a el contexto de Identity
+Cambiar la cadena de conexion de Identity a la BD  que se va utilizar o crear
+Cambiar el nombre de la bd a generar
+En la consola de Paquetes ejecutar :
 add-migration IdentityInitial -Context NetCoreFundametalsSecurityClientWebContext
 update-database -Context NetCoreFundametalsSecurityClientWebContext
+En la extension del StartUp IdentityHostingStartup revisar la cadena a usar
 
-modificar el login partial
-modificar el layout agragendo el partial login 
-Agregar lista de claims en index
+Modificar el layout agragendo el partial login
+Ejecutar
+Registrar un usuario y activarlo
+Ingresar en el perfil para revisar.
+
+Modificar el login partial 
+Validar el CS de login
+Validar la calse InputModel
+El metodo de Signin es _signInManager.PasswordSignInAsync
+Agregar lista de claims en index de conference
 (Ejecutar)
 
-add-migration User-CareerStartedDate -Context NetCoreFundametalsSecurityClientWebContext
+Agregar Valores a los nuevos campos
 Agregar una clase ApplicationUserClaimsPrincipalFactory
+En este factory se agregan los nuevos claims personalizados que uno necesite.
+En el IdentityHostingStartup registrar el factory
+Ejecutar
+Visualizar los nuevos claims
+
+en caso no se reconozco el nuevo campo eecutar:
+add-migration User-CareerStartedDate -Context NetCoreFundametalsSecurityClientWebContext
 registrar en DI de Identity (Ejecutar)
 
 Agregar ClaimsTransformer a Identity
-Modificar el login aprtial para mostrar el nombre (Ejecutar)
+Modificar el login partial para mostrar el nombre (Ejecutar)
 
+Copiar el Id de usuario de y 
 Agregar en la tabla UserClaim "Birthdate" "1 Jan 2000" (Ejecutar)
 
-Modificar register agragando FullName y BrithDate tanto en vista como codigo (ejecutar,registrar un usuario)
+Modificar register agragando FullName y BirthDate tanto en vista como codigo
+Agregar en el CS la referencia del Claim BirthDate a un campo de la vista
+(ejecutar,registrar un usuario y logearse)
 
-Modificar IdentityHostingStartup cambiando el AddIdentity, agregar DefaulrUI y DefaultToken
-Modificar ApplicationUserClaimsPrincipalFactory agregando Role
-
-Agregar a la tabla Roles "Organizer"
+Roles
+===========================================
+Modificar IdentityHostingStartup cambiando el AddIdentity y agregar IdentityRol, 
+Agregar AddDefaulUI y AddDefaultToken
+Modificar ApplicationUserClaimsPrincipalFactory agregando IdentyRole a la herencia y el constructor
+Agregar a la tabla Roles "Organizer" "ORGANIZER"
 Asignar el rol a un usuario
 Agregar Claims al rol creado :
 	- Type: Permission, Value: AddConference
 Ejecutar y revisar ROles
 
+Agregar una vista de Identity de confirmacion de mail
 Crear la clase EmailSender en la carpeta Identity
 crear una cuenta en SendGrid
 	- API Key, NetCore.Fundamentals.Security, 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
 agregar a secret manager {"SendGrid":{"ApiKey":"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","FromName":"NetCore Fundamentals","FromEmail":"NetCore.Fundamentals@Security.com"}}
+Agregar el paquete para SenGrid
 registrar en el DI de IdentityHostingStartup EmailSender (Ejecutar y registrar un usuario y validar el correo)
 
 Two Factor
@@ -50,6 +81,8 @@ Cerrar sesion e iniciar nuevamente,
 
 
 External Provider
+Agregar el esquema de autenticacion en IdentityHostingStartup para Google
+MOdificar el login agregando el goton para google
 Agregar a secret manager las credeciales de google
 Agregar el proveedor de autenticacion de Google a IdentityHostingStartup
 ejecutar a ir a login (no va permitir con usuario existente), logearse ir a external provider y asociar un correo google

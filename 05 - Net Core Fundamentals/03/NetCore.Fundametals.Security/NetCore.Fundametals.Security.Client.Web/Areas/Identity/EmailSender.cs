@@ -35,7 +35,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Areas.Identity
             //Disable click tracking
             msg.SetClickTracking(false, false);
 
-            await client.SendEmailAsync(msg);
+            var response = await client.SendEmailAsync(msg);
         }
     }
 }

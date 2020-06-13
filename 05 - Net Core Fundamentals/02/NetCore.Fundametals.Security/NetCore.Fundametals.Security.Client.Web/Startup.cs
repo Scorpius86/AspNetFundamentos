@@ -32,7 +32,7 @@ namespace NetCore.Fundametals.Security.Client.Web
             //services.AddControllersWithViews();
 
             services.AddControllersWithViews(o=>o.Filters.Add(new AuthorizeFilter()));
-            //services.AddRazorPages().AddMvcOptions(o => o.Filters.Add(new AuthorizeFilter())); --filtro global
+            services.AddRazorPages().AddMvcOptions(o => o.Filters.Add(new AuthorizeFilter())); //filtro global
 
             services.AddScoped<IConferenceRepository, ConferenceRepository>();
             services.AddScoped<IProposalRepository, ProposalRepository>();
@@ -41,16 +41,16 @@ namespace NetCore.Fundametals.Security.Client.Web
 
             services.AddDbContext<NetcoreFundametalsSecurityDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("NetCoreFundamentalsSecurityConnection")));
-            /* 
+
             //Sin autenticacion solo cookies
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
-                //.AddCookie(o=>o.LoginPath="account/signin"); --personalizacion de login
-            */
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie();
+            //.AddCookie(o => o.LoginPath = "account/signin"); --personalizacion de login
+
             /*
             //Con autenticacion Google
             services.AddAuthentication(o => {
-                o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; -- comentar cuando se implemeta el 
+                o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; // comentar cuando se implemeta el 
                 o.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
             })
                .AddCookie()
@@ -61,7 +61,8 @@ namespace NetCore.Fundametals.Security.Client.Web
                  });
             */
             //Google como metodo externo de autenticacion
-            services.AddAuthentication(o => {
+            services.AddAuthentication(o =>
+            {
                 o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
                .AddCookie()
