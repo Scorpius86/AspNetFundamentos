@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NetCore.Fundametals.Security.Client.Web.Data;
+using NetCore.Fundamentals.OIC.IdentityProvider.Data;
 
-namespace NetCore.Fundametals.Security.Client.Web.Migrations
+namespace NetCore.Fundamentals.OIC.IdentityProvider.Migrations
 {
-    [DbContext(typeof(NetCoreFundametalsSecurityClientWebContext))]
-    [Migration("20200405093144_IdentityInitial")]
+    [DbContext(typeof(IdentityProviderContext))]
+    [Migration("20200613030234_IdentityInitial")]
     partial class IdentityInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,12 +99,10 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -141,12 +139,10 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -156,7 +152,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("NetCore.Fundametals.Security.Client.Web.Models.ApplicationUser", b =>
+            modelBuilder.Entity("NetCore.Fundamentals.OIC.IdentityProvider.Areas.Identity.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -164,7 +160,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CareerStarted")
+                    b.Property<DateTime>("CareerStartedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -238,7 +234,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("NetCore.Fundametals.Security.Client.Web.Models.ApplicationUser", null)
+                    b.HasOne("NetCore.Fundamentals.OIC.IdentityProvider.Areas.Identity.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -247,7 +243,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("NetCore.Fundametals.Security.Client.Web.Models.ApplicationUser", null)
+                    b.HasOne("NetCore.Fundamentals.OIC.IdentityProvider.Areas.Identity.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -262,7 +258,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NetCore.Fundametals.Security.Client.Web.Models.ApplicationUser", null)
+                    b.HasOne("NetCore.Fundamentals.OIC.IdentityProvider.Areas.Identity.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -271,7 +267,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("NetCore.Fundametals.Security.Client.Web.Models.ApplicationUser", null)
+                    b.HasOne("NetCore.Fundamentals.OIC.IdentityProvider.Areas.Identity.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

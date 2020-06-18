@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace NetCore.Fundametals.Security.Client.Web.Migrations
+namespace NetCore.Fundamentals.OIC.IdentityProvider.Migrations
 {
     public partial class IdentityInitial : Migration
     {
@@ -40,7 +40,7 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    CareerStarted = table.Column<DateTime>(nullable: false),
+                    CareerStartedDate = table.Column<DateTime>(nullable: false),
                     FullName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -94,8 +94,8 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -139,8 +139,8 @@ namespace NetCore.Fundametals.Security.Client.Web.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

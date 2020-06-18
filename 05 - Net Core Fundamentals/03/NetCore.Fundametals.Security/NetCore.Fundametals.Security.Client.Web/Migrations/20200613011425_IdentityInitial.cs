@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace NetCore.Fundamentals.OIC.IdentityProvider.Migrations
+namespace NetCore.Fundametals.Security.Client.Web.Migrations
 {
-    public partial class InitialCreation : Migration
+    public partial class IdentityInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
